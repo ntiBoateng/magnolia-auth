@@ -1,7 +1,7 @@
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
-async function sendEmail(email, code) {
+async function sendEmail(email, code, username) {
   try {
     const smtpEndpoint = "smtp.gmail.com";
 
@@ -21,8 +21,9 @@ async function sendEmail(email, code) {
     var body_html = `<!DOCTYPE> 
     <html>
       <body>
-      <div>Welcome <b>${nameOfUser}</b></div><br/>
+      <div>Welcome <b>${username}</b></div><br/>
         <p>Your authentication code is : </p> <b>${code}</b>
+        <div></div>
       </body>
     </html>`;
 
