@@ -7,7 +7,7 @@ async function sendEmail(email, code) {
 
     const port = 465;
 
-    const senderAddress = "NAME <ADDRESS>";
+    const senderAddress = "Magnolia-CMS <ADDRESS>";
 
     var toAddress = email;
 
