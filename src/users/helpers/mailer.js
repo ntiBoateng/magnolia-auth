@@ -16,12 +16,12 @@ async function sendEmail(email, code) {
     const smtpPassword = process.env.SMTP_PASSWORD;
 
     var subject = "Verify your email";
-
+    var nameOfUser = email.split("@")[0];
     // The body of the email for recipients
     var body_html = `<!DOCTYPE> 
     <html>
       <body>
-      <div>Welcome <b>${email}</b></div><br/>
+      <div>Welcome <b>${nameOfUser}</b></div><br/>
         <p>Your authentication code is : </p> <b>${code}</b>
       </body>
     </html>`;
