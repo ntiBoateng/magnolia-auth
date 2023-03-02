@@ -18,7 +18,7 @@ const userSchema = new Schema(
 
     referralCode: { type: String, unique: true },
     referrer: { type: String, default: null },
-    fullName: {type: String}
+    fullName: {type: String, required: true}
   },
   {
     timestamps: {
