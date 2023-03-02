@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 
 async function sendEmail(email, code) {
   try {
-    const smtpEndpoint = "smtp.sendgrid.net";
+    const smtpEndpoint = "smtp.gmail.com";
 
     const port = 465;
 
@@ -11,9 +11,9 @@ async function sendEmail(email, code) {
 
     var toAddress = email;
 
-    const smtpUsername = "apikey";
+    const smtpUsername = process.env.SMTP_MAIL;
 
-    const smtpPassword = process.env.SG_APIKEY;
+    const smtpPassword = process.env.SMTP_PASSWORD;
 
     var subject = "Verify your email";
 
@@ -21,6 +21,7 @@ async function sendEmail(email, code) {
     var body_html = `<!DOCTYPE> 
     <html>
       <body>
+      <div>Welcome <b>${email}</b></div><br/>
         <p>Your authentication code is : </p> <b>${code}</b>
       </body>
     </html>`;
@@ -43,6 +44,7 @@ async function sendEmail(email, code) {
       subject: subject,
       html: body_html,
     };
+  
 
     let info = await transporter.sendMail(mailOptions);
     return { error: false };

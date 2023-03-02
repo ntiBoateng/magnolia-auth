@@ -2,13 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const authRoutes = require("./routes/users");
 
+const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD}@${process.env.DB_LINK}/${process.env.DB_TABLE}}`;
 mongoose
-  .connect(process.env.MONGO_URI, {
-    dbName: "TheNodeAuth",
+  .connect(uri, {
+    dbName: "MagnoliaAuth",
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

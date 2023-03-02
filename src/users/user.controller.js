@@ -39,6 +39,7 @@ exports.Signup = async (req, res) => {
       email: result.value.email,
     });
 
+  
     if (user) {
       return res.json({
         error: true,
@@ -69,7 +70,7 @@ exports.Signup = async (req, res) => {
     result.value.emailToken = code;
     result.value.emailTokenExpires = new Date(expiry);
 
-    //Check if referred and validate code.
+   // Check if referred and validate code.
     if (result.value.hasOwnProperty("referrer")) {
       let referrer = await User.findOne({
         referralCode: result.value.referrer,
@@ -120,6 +121,7 @@ exports.Activate = async (req, res) => {
         error: true,
         message: "Invalid details",
       });
+
     } else {
       if (user.active)
         return res.send({
