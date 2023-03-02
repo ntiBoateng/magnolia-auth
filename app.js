@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000;
 
 const authRoutes = require("./routes/users");
 
-const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD}@${process.env.DB_LINK}/${process.env.DB_TABLE}}`;
+const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD}@${process.env.DB_LINK}/?retryWrites=true&w=majority`;
 mongoose
   .connect(uri, {
     dbName: "MagnoliaAuth",
@@ -27,8 +27,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/ping", (req, res) => {
   return res.send({
-    error: false,
-    message: "Server is healthy",
+    error: true,
+    message: "Server is healthy proceed to action",
   });
 });
 
