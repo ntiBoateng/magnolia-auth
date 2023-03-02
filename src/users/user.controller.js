@@ -17,7 +17,7 @@ const referralCode = generate(CHARACTER_SET, REFERRAL_CODE_LENGTH);
 //Validate user schema
 const userSchema = Joi.object().keys({
   email: Joi.string().email({ minDomainSegments: 2 }),
-  fullname: Joi.string(),
+  fullName: Joi.string(),
   password: Joi.string().required().min(4),
   confirmPassword: Joi.string().valid(Joi.ref("password")).required(),
   referrer: Joi.string(),
@@ -60,7 +60,7 @@ exports.Signup = async (req, res) => {
 
     let expiry = Date.now() + 60 * 1000 * 15; //15 mins in ms
 
-    const sendCode = await sendEmail(result.value.email, code, result.value.fullname);
+    const sendCode = await sendEmail(result.value.email, code, result.value.fullName);
 
     if (sendCode.error) {
       return res.status(500).json({
