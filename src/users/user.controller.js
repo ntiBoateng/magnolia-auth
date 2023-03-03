@@ -207,6 +207,7 @@ exports.Login = async (req, res) => {
     //Success
     return res.send({
       success: true,
+      activated: true,
       message: "User logged in successfully",
       accessToken: token,
     });
